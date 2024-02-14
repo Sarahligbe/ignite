@@ -6,8 +6,8 @@ DOCKERFILE=./app/Dockerfile
 DOCKER_TAG=1.0
 
 #Prompt for docker username and password
-DOCKER_USERNAME ?= $(shell read -p "Enter Docker username: " u && echo $$u)
-DOCKER_PASSWORD ?= $(shell read -s -p "Enter Docker password: " p && echo $$p)
+DOCKER_USERNAME ?= $(shell bash -c 'read -s -p "Enter Docker username: " u; echo $$u)
+DOCKER_PASSWORD ?= $(shell bash -c 'read -s -p "Enter Docker password: " p; echo $$p)
 
 #install kind
 install-kind:
