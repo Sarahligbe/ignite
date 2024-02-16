@@ -11,9 +11,13 @@ else
 fi
 
 #Install kind from binaries
+if ! command -v kind  &> /dev/null; then
 sudo curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.21.0/kind-linux-amd64
 sudo chmod +x ./kind
 sudo mv ./kind /usr/local/bin/kind
+else
+	echo "kind is already installed"
+fi
 
 #create k8s cluster
 kind create cluster
@@ -25,8 +29,5 @@ kubectl cluster-info --context kind-kind
 sudo curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 sudo chmod +x  get_helm.sh
 sudo ./get_helm.sh
-
-#set kubeconfig env var for terraform to confer from
-export KUBE_CONFIG_PATH=$(cat "${HOME}/.kube/config") 
 
 echo "kind cluster successfully bootstrapped"

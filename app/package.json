@@ -1,12 +1,16 @@
 {
-  "name": "app",
+  "name": "express-hello-world",
   "version": "1.0.0",
-  "description": "",
+  "description": "express hello world app",
+  "author": "Sarah",
+  "license": "MIT",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }

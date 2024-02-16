@@ -20,13 +20,15 @@ terraform {
 }
 
 provider "helm" {
-  # terraform will source the config from the KUBE_CONFIG_PATH variable set from the bash script
+  kubernetes {
+    config_path = pathexpand(var.cluster_config_path)
+  }
 }
 
 provider "kubectl" {
-  # terraform will source the config from the KUBE_CONFIG_PATH variable set from the bash script
+  config_path = pathexpand(var.cluster_config_path)
 }
 
 provider "kubernetes" {
-  # terraform will source the config from the KUBE_CONFIG_PATH variable set from the bash script
+  config_path = pathexpand(var.cluster_config_path)
 }
