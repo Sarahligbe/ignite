@@ -1,5 +1,5 @@
 data "kubectl_filename_list" "kubernetes" {
-    pattern = "./kubernetes/*.yaml"
+    pattern = "../kubernetes/*.yaml"
 }
 
 resource "kubectl_manifest" "test" {

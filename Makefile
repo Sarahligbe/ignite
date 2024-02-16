@@ -15,7 +15,7 @@ install-kind:
 
 #build docker image
 docker-build:
-	docker build -t $(IMAGE_NAME):$(DOCKER_TAG) -f $(DOCKERFILE) .
+	docker build --no-cache -t $(DOCKER_USERNAME)/$(IMAGE_NAME):$(DOCKER_TAG) -f $(DOCKERFILE) .
 
 #login to docker
 docker-login:
@@ -23,7 +23,6 @@ docker-login:
 
 #push image to docker
 docker-push: docker-login
-	docker tag $(IMAGE_NAME):$(DOCKER_TAG) $(DOCKER_USERNAME)/$(IMAGE_NAME):$(DOCKER_TAG)
 	docker push $(DOCKER_USERNAME)/$(IMAGE_NAME):$(DOCKER_TAG)
 
 #initialize terraform
@@ -40,9 +39,9 @@ apply: init plan
 
 #destroy terraform
 destroy:
-	cd ./terraform && terraform destroy
+	cd ./terraform && terraform destroy -auto-approve
 
-all: install-kind docker-build docker-login docker-push init plan apply 
+all: install-kind docker-build docker-push apply 
 
 .PHONY: install-kind docker-build docker-login docker-push init plan apply destroy all
 	
